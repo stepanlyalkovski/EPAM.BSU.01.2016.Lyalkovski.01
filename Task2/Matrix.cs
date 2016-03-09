@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
+    /// <summary>
+    /// Предоставляет расширяющий метод для сортировки строк матрицы, а так же методы упорядочивания 
+    /// </summary>
     public static class Matrix
     {
         // Ascending order
+        /// <summary>
+        /// Сортирует строки матрицы в порядке возрастания по заданному методу упорядочивания
+        /// </summary>
+        /// <param name="matrix">Исходная матрица( jagged массив)</param>
+        /// <param name="Compare">Метод сравнения строк матрицы</param>
         public static void MatrixSort(this int[][] matrix, Comparison<int[]> Compare)
         {
             int[] temp;
