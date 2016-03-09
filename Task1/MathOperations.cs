@@ -20,7 +20,7 @@ namespace Task1
                 double val = Math.Pow(x, n);
                 if (Math.Abs(val - a) <= eps)
                     return x;
-                x = (1 / n) * ((n - 1) * x + a / Math.Pow(x, (int)n - 1));
+                x = (1 / n) * ((n - 1) * x + a / Math.Pow(x, n - 1));
             }
         }
     }
