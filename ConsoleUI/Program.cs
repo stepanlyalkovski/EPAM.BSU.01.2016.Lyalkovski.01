@@ -23,6 +23,22 @@ namespace ConsoleUI
            Console.WriteLine("Sqrt result: " + result);
            Console.WriteLine($"Comparing to Math.Pow:\n Number: {number}\n sqrt result after Math.Pow: {test}");
         }
+
+        public static int CompareByRowSum(int[] row1, int[] row2)
+        {
+            return row1.Sum().CompareTo(row2.Sum());
+        }
+
+        public static int CompareByMaxElem(int[] row1, int[] row2)
+        {
+            return row1.Max().CompareTo(row2.Max());
+        }
+
+        public static int CompareByMinElem(int[] row1, int[] row2)
+        {
+            return row1.Min().CompareTo(row2.Min());
+        }
+
         static void MatrixSortTestring()
         {
             int[][] matrix = new int[4][]
@@ -48,7 +64,7 @@ namespace ConsoleUI
             }
 
             Console.WriteLine("\nSorting by Sum");
-            matrix.MatrixSort(Matrix.CompareByRowSum);
+            matrix.MatrixSort(CompareByRowSum);
             foreach (var singleArray in matrix)
             {
                 foreach (var item in singleArray)
@@ -59,7 +75,7 @@ namespace ConsoleUI
             }
 
             Console.WriteLine("\nSorting by max row element:");
-            matrix.MatrixSort(Matrix.CompareByMaxElem);
+            matrix.MatrixSort(CompareByMaxElem);
             foreach (var singleArray in matrix)
             {
                 foreach (var item in singleArray)
@@ -69,7 +85,7 @@ namespace ConsoleUI
                 Console.WriteLine();
             }
             Console.WriteLine("\nSorting by min row element:");
-            matrix.MatrixSort(Matrix.CompareByMinElem);
+            matrix.MatrixSort(CompareByMinElem);
             foreach (var singleArray in matrix)
             {
                 foreach (var item in singleArray)

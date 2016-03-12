@@ -15,7 +15,7 @@ namespace Task2
         /// <summary>
         /// Сортирует строки матрицы в порядке возрастания по заданному методу упорядочивания
         /// </summary>
-        /// <param name="matrix">Исходная матрица( jagged массив)</param>
+        /// <param name="matrix">Исходная матрица(jagged массив)</param>
         /// <param name="Compare">Метод сравнения строк матрицы</param>
         public static void MatrixSort(this int[][] matrix, Comparison<int[]> Compare)
         {
@@ -26,29 +26,16 @@ namespace Task2
                 for (int sort = 0; sort < matrix.Length - 1; sort++)
                 {
                     if (Compare(matrix[sort], matrix[sort + 1]) > 0)
-                    {
-                        temp = matrix[sort];
-                        matrix[sort] = matrix[sort + 1];
-                        matrix[sort + 1] = temp;
-                    }
+                       SwapRows(ref matrix[sort], ref matrix[sort+1]);
                 }
             }
         }
 
-        public static int CompareByRowSum(int[] row1, int[] row2)
+        private static void SwapRows(ref int[] row1, ref  int[] row2)
         {
-            return row1.Sum().CompareTo(row2.Sum());
+            int[] temp = row1;
+            row1 = row2;
+            row2 = temp;
         }
-
-        public static int CompareByMaxElem(int[] row1, int[] row2)
-        {
-            return row1.Max().CompareTo(row2.Max());
-        }
-
-        public static int CompareByMinElem(int[] row1, int[] row2)
-        {
-            return row1.Min().CompareTo(row2.Min());
-        }
-
     }
 }
