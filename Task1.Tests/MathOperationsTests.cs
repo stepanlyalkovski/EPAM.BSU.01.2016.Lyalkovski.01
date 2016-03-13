@@ -37,7 +37,7 @@ namespace Task1.Tests
         [TestCase(-20, 3, 0.1,  ExpectedException = typeof(ArgumentException))]
         [TestCase(50, 0, 0, ExpectedException = typeof(ArgumentOutOfRangeException))]
         [TestCase(150, 2, -0.1, ExpectedException = typeof(ArgumentOutOfRangeException))]
-        public void Sqrt_WrongParametrs_ExceptionThrown(double number, int pow, double eps)
+        public void Sqrt_IncorrectArguments_ExceptionThrown(double number, int pow, double eps)
         {
             MathOperations.Sqrt(number, pow, eps);
         }
