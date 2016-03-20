@@ -11,13 +11,34 @@ namespace Task2
     /// </summary>
     public static class Matrix
     {
-        // Ascending order
         /// <summary>
-        /// Сортирует строки матрицы в порядке возрастания по заданному методу упорядочивания
+        /// Adapter for using Sort method with IComparer and Comparison
+        /// </summary>
+        internal sealed class ComparerAdapter : IComparer<int[]>
+        {
+            private Comparison<int[]> comparison;
+
+            public ComparerAdapter(Comparison<int[]> comparison)
+            {
+                this.comparison = comparison;
+            }
+
+            public int Compare(int[] x, int[] y) => comparison(x, y);
+
+        }
+
+        /// <summary>
+        /// Сортирует строки матрицы по заданному методу упорядочивания
         /// </summary>
         /// <param name="matrix">Исходная матрица(jagged массив)</param>
         /// <param name="Compare">Метод сравнения строк матрицы</param>
         public static void MatrixSort(this int[][] matrix, Comparison<int[]> Compare)
+        {
+            ComparerAdapter comparer = new ComparerAdapter(Compare);
+            MatrixSort(matrix, comparer);
+        }
+
+        public static void MatrixSort(this int[][] matrix, IComparer<int[]> comparer)
         {
             int[] temp;
 
@@ -25,8 +46,8 @@ namespace Task2
             {
                 for (int sort = 0; sort < matrix.Length - 1; sort++)
                 {
-                    if (Compare(matrix[sort], matrix[sort + 1]) > 0)
-                       SwapRows(ref matrix[sort], ref matrix[sort+1]);
+                    if (comparer.Compare(matrix[sort], matrix[sort + 1]) > 0)
+                        SwapRows(ref matrix[sort], ref matrix[sort + 1]);
                 }
             }
         }
